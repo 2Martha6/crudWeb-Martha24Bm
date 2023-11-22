@@ -51,6 +51,7 @@ namespace crudWeb_Martha24Bm.Models
                     .IsRequired()
                     .HasColumnType("varchar(50)");
 
+
                 entity.Property<string>("PaginaWeb")
                     .IsRequired()
                     .HasColumnType("varchar(50)");
