@@ -15,5 +15,24 @@ namespace crudWeb_Martha24Bm.Models
         public string? Titulo { get; set; }
         [Required(ErrorMessage = "El campo Descripcion es obligatorio.")]
         public string? Descripcion { get; set; }
+
+
+        public string? PaginaWeb { get; set; }
+        [Required(ErrorMessage = "Este campo es obligatorio")]
+        public string? Telefono { get; set; }
+
+        //WORKEXPERIENCE
+        [Required(ErrorMessage = "Este campo es obligatorio")]
+        public string? Encabezado { get; set; }
+        [Required(ErrorMessage = "Este campo es obligatorio")]
+        public string? Texto{ get; set; }
+        [Required(ErrorMessage = "Este campo es obligatorio")]
+        public string? EncabezadoW { get; set; }
+        [Required(ErrorMessage = "Este campo es obligatorio")]
+        public string? TextoW { get; set; }
+
+
+
+
     }
 }
