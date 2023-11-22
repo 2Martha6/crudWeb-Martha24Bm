@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace crudWeb_Martha24Bm.Models
@@ -31,19 +32,64 @@ namespace crudWeb_Martha24Bm.Models
         {
             modelBuilder.Entity<Usuario>(entity =>
             {
-                entity.Property(e => e.Id).HasColumnName("ID");
+                entity.Property<int>("Id")
+                         .ValueGeneratedOnAdd()
+                         .HasColumnType("int");
 
-                entity.Property(e => e.Descripcion)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                SqlServerPropertyBuilderExtensions.UseIdentityColumn(entity.Property<int>("Id"));
 
-                entity.Property(e => e.Nombre)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
 
-                entity.Property(e => e.Titulo)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+                entity.Property<string>("Nombre")
+                    .IsRequired()
+                    .HasColumnType("varchar(50)");
+
+                entity.Property<string>("Titulo")
+                    .IsRequired()
+                    .HasColumnType("varchar(50)");
+
+                entity.Property<string>("Descripcion")
+                    .IsRequired()
+                    .HasColumnType("varchar(50)");
+
+                entity.Property<string>("PaginaWeb")
+                    .IsRequired()
+                    .HasColumnType("varchar(50)");
+
+                entity.Property<string>("Telefono")
+                    .IsRequired()
+                    .HasColumnType("varchar(50)");
+
+                entity.Property<string>("Encabezado")
+                    .HasColumnType("varchar(50)");
+
+                entity.Property<string>("Texto")
+                    .HasColumnType("varchar(50)");
+
+                entity.Property<string>("EncabezadoW")
+                    .HasColumnType("varchar(50)");
+
+                entity.Property<string>("TextoW")
+                    .HasColumnType("varchar(50)");
+
+                entity.Property<int?>("html")
+                        .HasColumnType("int");
+
+                entity.Property<int?>("css")
+                        .HasColumnType("int");
+                entity.Property<int?>("js")
+                        .HasColumnType("int");
+                entity.Property<int?>("wp")
+                        .HasColumnType("int");
+                entity.Property<int?>("photo")
+                        .HasColumnType("int");
+                entity.Property<int?>("php")
+                        .HasColumnType("int"); 
+                entity.Property<int?>("linux")
+                        .HasColumnType("int");
+                entity.Property<int?>("seo")
+                        .HasColumnType("int");
+
+
             });
 
             OnModelCreatingPartial(modelBuilder);

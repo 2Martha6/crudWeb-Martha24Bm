@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using crudWeb_Martha24Bm.Models;
@@ -18,141 +19,102 @@ namespace crudWeb_Martha24Bm.Controllers
             _context = context;
         }
 
-     
-        public async Task<IActionResult> Index()
-        {
-              return _context.Usuarios != null ? 
-                          View(await _context.Usuarios.ToListAsync()) :
-                          Problem("Entity set 'ProgramacionContext.Usuarios'  is null.");
-        }
 
+        public async Task<IActionResult> Index() {  
       
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Usuarios == null)
-            {
-                return NotFound();
-            }
-
-            var usuario = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-
-            return View(usuario);
+            var DataInfo = await _context.Usuarios.ToListAsync();
+            return View(DataInfo);
         }
-
-      
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> Create(Usuario usuarios)
+        {
+            try
+            {
+                
+                _context.Usuarios.Add(usuarios);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        [HttpGet]
+        public IActionResult Edit(int? Id)
+        {
+            if (Id == null)
+            {
+                return NotFound();
+            }
 
-    
+            var informacion = _context.Usuarios.Find(Id);
+            if (informacion == null)
+            {
+                return NotFound();
+            }
+            return View(informacion);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nombre,Titulo,Descripcion")] Usuario usuario)
+        public async Task<IActionResult> Edit(Usuario usuario)
         {
-            if (ModelState.IsValid)
+           
+            
+            if (ModelState.IsValid != null)
             {
-                _context.Add(usuario);
+                _context.Usuarios.Update(usuario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(usuario);
         }
-
-  
-        public async Task<IActionResult> Edit(int? id)
+        [HttpGet]
+        public IActionResult Details(int? Id)
         {
-            if (id == null || _context.Usuarios == null)
+            if (Id == null)
             {
                 return NotFound();
             }
-
-            var usuario = await _context.Usuarios.FindAsync(id);
-            if (usuario == null)
+            var curriculums = _context.Usuarios.Find(Id);
+            if (curriculums == null)
             {
                 return NotFound();
             }
-            return View(usuario);
+            return View(curriculums);
         }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nombre,Titulo,Descripcion")] Usuario usuario)
+        [HttpGet]
+        public IActionResult Delete(int? Id)
         {
-            if (id != usuario.Id)
+            if (Id == null)
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
+            var informacion = _context.Usuarios.Find(Id);
+            if (informacion == null)
             {
-                try
-                {
-                    _context.Update(usuario);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UsuarioExists(usuario.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                return NotFound();
             }
-            return View(usuario);
+            return View(informacion);
         }
-
-    
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Usuarios == null)
-            {
-                return NotFound();
-            }
-
-            var usuario = await _context.Usuarios
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-
-            return View(usuario);
-        }
-
-     
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> BorrarCurriculum(int? Id)
         {
-            if (_context.Usuarios == null)
+            var usuario = await _context.Usuarios.FindAsync(Id);
+            if (usuario == null)
             {
-                return Problem("Entity set 'ProgramacionContext.Usuarios'  is null.");
+                return View();
             }
-            var usuario = await _context.Usuarios.FindAsync(id);
-            if (usuario != null)
-            {
-                _context.Usuarios.Remove(usuario);
-            }
-            
+            _context.Usuarios.Remove(usuario);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
-
-        private bool UsuarioExists(int id)
-        {
-          return (_context.Usuarios?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

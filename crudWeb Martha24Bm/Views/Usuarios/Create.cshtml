@@ -20,6 +20,10 @@
     </div>
 </div>
 <hr />
+<div class="col-12">
+    <h2>Datos</h2>
+</div>
+
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
@@ -39,8 +43,104 @@
                 <input asp-for="Descripcion" class="form-control" />
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
+
+            <div class="col-sm-4">
+                <label class="form-label">Telefono</label>
+                <input asp-for="Telefono" class="form-control" required />
+                <span asp-validation-for="Telefono" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-6">
+                <label class="form-label">Correo Electronico</label>
+                <input type="email" asp-for="Correo " class="form-control" required />
+                <span asp-validation-for="Correo" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-6">
+                <label class="form-label">Mi Página Web</label>
+                <input asp-for="PaginaWeb" class="form-control" required placeholder="Link de la pagina web" />
+                <span asp-validation-for="PaginaWeb" class="text-danger"></span>
+            </div>
+
+
+            <div class="col-12">
+                <h2>Experiencia Laboral</h2>
+            </div>
+            <div class="col-sm-6">
+                <label class="form-label">Empresa y/o puesto.</label>
+                <input asp-for="EncabezadoW" class="form-control" required />
+                <span asp-validation-for="EncabezadoW" class="text-danger"></span>
+            </div>
+            <div class="col-sm-6">
+                <label class="form-label">Informacion del trabajo.</label>
+                <input asp-for="TextoW" class="form-control" required />
+                <span asp-validation-for="TextoW" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                <h2>Educación Académica</h2>
+            </div>
+
+            <div class="col-sm-6">
+                <label class="form-label">Escuela</label>
+                <input asp-for="Encabezado" class="form-control" required />
+                <span asp-validation-for="Encabezado" class="text-danger"></span>
+            </div>
+            <div class="col-sm-6">
+                <label class="form-label">Informacion academica</label>
+                <input asp-for="Texto" class="form-control" required />
+                <span asp-validation-for="Texto" class="text-danger"></span>
+            </div>
+
+            <div class="col-12">
+                <h2>Skills</h2>
+            </div>
+            
+            <div class="col-sm-6">
+                <label class="form-label">HTML</label>
+                <input asp-for="html" type="number" class="form-control" required />
+                <span asp-validation-for="html" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-6">
+                <label class="form-label">CSS</label>
+                <input asp-for="css" type="number" class="form-control" required />
+                <span asp-validation-for="css" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-6">
+                <label class="form-label">JavaScript</label>
+                <input asp-for="js" type="number" class="form-control" required />
+                <span asp-validation-for="js" class="text-danger"></span>
+            </div>
+
+            <div class="col-sm-6">
+                <label class="form-label">WordPress</label>
+                <input asp-for="wp" type="number" class="form-control" required />
+                <span asp-validation-for="wp" class="text-danger"></span>
+            </div>
+            <div class="col-sm-6">
+                <label class="form-label">PhotoShop</label>
+                <input asp-for="photo" type="number" class="form-control" required />
+                <span asp-validation-for="photo" class="text-danger"></span>
+            </div>
+            <div class="col-sm-6">
+                <label class="form-label">PHP</label>
+                <input asp-for="php" type="number" class="form-control" required />
+                <span asp-validation-for="php" class="text-danger"></span>
+            </div>
+            <div class="col-sm-6">
+                <label class="form-label">Linux</label>
+                <input asp-for="linux" type="number" class="form-control" required />
+                <span asp-validation-for="linux" class="text-danger"></span>
+            </div>
+            <div class="col-sm-6">
+                <label class="form-label">SEO</label>
+                <input asp-for="seo" type="number" class="form-control" required />
+                <span asp-validation-for="seo" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
-                <input type="submit" value="Crear" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
