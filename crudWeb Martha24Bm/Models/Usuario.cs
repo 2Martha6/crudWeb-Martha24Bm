@@ -9,7 +9,7 @@ namespace crudWeb_Martha24Bm.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Este campo  es obligatorio.")]
+        [Required(ErrorMessage = "Este campo  es obligatorio. ")]
         public string? Nombre { get; set; }
 
         [Required(ErrorMessage = "Este campo  es obligatorio.")]
