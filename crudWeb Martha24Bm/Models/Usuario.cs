@@ -14,7 +14,7 @@ namespace crudWeb_Martha24Bm.Models
 
         [Required(ErrorMessage = "Este campo  es obligatorio.")]
         public string? Titulo { get; set; }
-        [Required(ErrorMessage = "Este campo  es obligatorio.")]
+        [Required(ErrorMessage = "Este campo  es obligatorio. ")]
         public string? Descripcion { get; set; }
 
         [Required(ErrorMessage = "Este campo es obligatorio")]
